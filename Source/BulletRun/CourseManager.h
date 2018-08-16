@@ -36,5 +36,6 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Tiles")
 		TSubclassOf<AMasterTile> TileClass;
 
+	// Checks if an obstacle can be spawned
 	bool bCanSpawnObstacle = false;
 };

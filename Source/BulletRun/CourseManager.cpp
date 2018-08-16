@@ -15,6 +15,7 @@ ACourseManager::ACourseManager()
 // Called when the game starts or when spawned
 void ACourseManager::BeginPlay()
 {
+	// Ensures that no obstacle can be spawned on the first nine tiles
 	for (int32 i = 0; i < 9; i++)
 	{
 		SpawnTile();
@@ -30,6 +31,7 @@ void ACourseManager::Tick(float DeltaTime)
 
 }
 
+// Spawns Tile
 void ACourseManager::SpawnTile()
 {
 

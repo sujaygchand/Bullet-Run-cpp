@@ -60,8 +60,10 @@ protected:
 	UFUNCTION()
 	void OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult);
 
+	// Bool to check if box collision has been overlapped
 	bool bHasOverLapped = false;
 
+	// Checks if a box obstacle has been spawned
 	bool bSpawnedBox = false;
 
 public:

@@ -129,6 +129,7 @@ void ABulletRunCharacter::MoveRight(float Value)
 	}
 }
 
+// Test function
 void ABulletRunCharacter::OverlappedTester()
 {
 	Jump();

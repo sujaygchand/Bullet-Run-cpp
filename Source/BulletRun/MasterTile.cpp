@@ -73,6 +73,7 @@ void AMasterTile::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// Checks if obstable can be spawned
 	if (CourseManager->bCanSpawnObstacle) {
 		SpawnObstacles();
 	}
@@ -85,20 +86,31 @@ void AMasterTile::Tick(float DeltaTime)
 
 }
 
+/**
+ * Returns the attach arrow component's location
+ *
+ * @return AttachPoint location
+ */
 FVector AMasterTile::GetAttachPointLocation()
 {
 	return AttachPoint->GetComponentLocation();
 }
 
+/**
+ * Return a lane arrow location
+ *
+ * @return Lane Arrow Location
+ */
 FVector AMasterTile::LaneArrowLocation(UArrowComponent* LaneArrow)
 {
 	return LaneArrow->GetComponentLocation();
 }
 
+/**
+ * Determines if obstacles are spawned and where
+ */
 void AMasterTile::SpawnObstacles()
 {
-
-	FOutputDeviceNull ar;
 
 	int LeftLaneRan = FMath::RandRange(0, 3);
 	int CenterLaneRan = FMath::RandRange(0, 3);
@@ -145,6 +157,9 @@ void AMasterTile::SpawnObstacles()
 
 }
 
+/**
+ * Spawns the obstacle with the relevent tranform data
+ */
 void AMasterTile::SpawnObstacles(TSubclassOf<AActor> Class, FVector SpawnLocation, FQuat SpawnRotation, FVector SpawnScale)
 {
 	if (bSpawnedBox) {
@@ -170,15 +185,20 @@ void AMasterTile::SpawnObstacles(TSubclassOf<AActor> Class, FVector SpawnLocatio
 
 }
 
+/**
+ * On Box collision overlap
+ */
 void AMasterTile::OnBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 		ABulletRunCharacter* PlayerCharacter = Cast<ABulletRunCharacter>(OtherActor);
 		
+
 	if (PlayerCharacter && ! bHasOverLapped) {
 		bHasOverLapped = true;
 
 			CourseManager->SpawnTile();
 
+		// The destory object is handled in BP
 		FOutputDeviceNull ar;
 		this->CallFunctionByNameWithArguments(TEXT("DestroyTile"), ar, NULL, true);
 	}
