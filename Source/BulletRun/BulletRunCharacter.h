@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "BulletRunCharacter.generated.h"
 
+class FOutputDeviceNull;
+
 UCLASS(config=Game)
 class ABulletRunCharacter : public ACharacter
 {
